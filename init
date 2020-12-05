@@ -37,4 +37,3 @@ usermod -aG vboxsf $USERNAME
 echo "reboot at your earliest convenience."
 
 echo "special thanks to Smurphos for his contribution towards the 'features' script"
-sudo bash ./features -y
