@@ -9,7 +9,7 @@ cd
 #change username to your username
 
 ADDRESS="/media/sf_Shared/config"
-USERNAME="Clem"
+USERNAME=$USERNAME
 
 echo "If JDK8 is required, visit this link: https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u242-b08/OpenJDK8U-jdk_x64_linux_hotspot_8u242b08.tar.gz"
 
@@ -35,5 +35,6 @@ sudo apt-get install code npm
 usermod -aG vboxsf $USERNAME
 
 echo "reboot at your earliest convenience."
-echo "for other features, please execute the 'features' script after this."
+
 echo "special thanks to Smurphos for his contribution towards the 'features' script"
+sudo bash features -y
