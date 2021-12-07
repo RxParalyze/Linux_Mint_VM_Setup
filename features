@@ -1,0 +1,18 @@
+#~/.bash.sh
+
+echo "Credit for many of the following commands should go to Smurphos"
+echo "Smurphos' github is https://github.com/smurphos/nemo_actions_and_cinnamon_scripts"
+
+#Generic Scrips and Actions by Smurphos
+git clone https://github.com/smurphos/nemo_actions_and_cinnamon_scripts.git
+mkdir -p ~/.local/share/nemo/actions/scripts
+cp -rv ./nemo_actions_and_cinnamon_scripts/.local/share/nemo/actions/ ~/.local/share/nemo
+sudo apt install zenity xdotool wmctrl gprename mediainfo-gui shellcheck searchmonkey tree imagemagick xplayer
+
+#Install all Cinnamon Scripts by Smurphos
+cp -rv ./nemo_actions_and_cinnamon_scripts/.local/bin/ ~/.local
+sudo cp -r ./nemo_actions_and_cinnamon_scripts/opt/login_screen_random_background.sh /opt
+cp -rv ./nemo_actions_and_cinnamon_scripts/.config/autostart/ ~/.config
+cp -rv ./nemo_actions_and_cinnamon_scripts/.config/gtk-3.0/ ~/.config
+
+echo "reboot at your earliest convenience."
