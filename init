@@ -1,0 +1,52 @@
+#~/.bash.sh
+
+sudo apt update
+sudo apt upgrade
+
+cd
+
+USERNAME=$USERNAME
+
+echo "If JDK8 is required, visit this link: https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u242-b08/OpenJDK8U-jdk_x64_linux_hotspot_8u242b08.tar.gz"
+
+sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+sudo apt-key fingerprint 0EBFCD88
+
+#Only one of the next two lines should be uncommented. The first is only for Linux Mint, the second for other cases
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+#sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+sudo apt update
+sudo apt install apt-transport-https software-properties-common curl git make maven python3-setuptools python3-pip openjdk-11-jdk
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+sudo apt install code npm docker-ce docker-ce-cli containerd.io
+
+#Docker
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo gpasswd -a $USER docker
+newgrp docker
+sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash
+sudo apt autoremove
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+
+usermod -aG vboxsf $USERNAME
+
+echo "reboot at your earliest convenience."
+
+echo "special thanks to Smurphos for his contribution towards the 'features' script"
